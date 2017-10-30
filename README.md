@@ -3,8 +3,9 @@ Use webdriver to change ptc account password automatically.
 
 # Installation
 To Install PTC-AutoChange-Password run:
-
+```
 git clone git@github.com:weizh888/PTC-AutoChange-Password.git
+```
 Then:
 ```
 cd PTC-AutoChange-Password
