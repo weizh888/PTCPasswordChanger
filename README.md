@@ -2,7 +2,7 @@
 Use webdriver to change ptc account password automatically.
 
 # Installation
-To Install PTC-AutoChange-Password run:
+To install PTC-AutoChange-Password run:
 ```
 git clone git@github.com:weizh888/PTC-AutoChange-Password.git
 ```
@@ -19,7 +19,7 @@ python change_password.py -f accounts.csv -pw password
 Where **accounts.csv** is the file of accounts to check, and **password** is the new password to set. See "Formatting" to see how they should be formatted.
 
 # Formatting
-* Your **accounts** file supports two types of structures as follows:
+* The **accounts** file supports two types of structures as follows:
   - RocketMap Format
   ```ptc,PTCAccount001,Example001!```
   - Another Format
