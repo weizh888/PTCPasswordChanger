@@ -16,7 +16,7 @@ To use the program run the following command:
 ```
 python change_password.py -f accounts.csv -pw password
 ```
-Where **accounts.csv** is the file of accounts to check, and **password** is the new password to set. See "Formatting" to see how they should be formatted.
+Where **accounts.csv** is the file of accounts to change password, and **password** is the new password. See "Formatting" to see how they should be formatted.
 
 # Formatting
 * The **accounts** file supports two types of structures as follows:
