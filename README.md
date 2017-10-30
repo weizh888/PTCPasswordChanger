@@ -28,4 +28,4 @@ Where **accounts.csv** is the file of accounts to check, and **password** is the
   > Your password must include at least one uppercase and one lowercase letter, a number, and at least one other character that is not a letter or digit, such as *, ', (, etc.
   
 # Output
-The program will display a message in the terminal if the password is changed. Additionally, it will output all password-changed accounts to a new file named **success.csv**, and all accounts that failed to change password to **failed.csv**.
+The program will display a message in the terminal if the password is changed. Additionally, it will output all password-changed accounts to a new file named **succeed.csv**, and all accounts that failed to change password to **failed.csv**.
