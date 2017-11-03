@@ -1,4 +1,4 @@
-# PTC-AutoChange-Password
+# PTCPasswordChanger
 Use webdriver to change ptc account password automatically.
 
 # Installation
