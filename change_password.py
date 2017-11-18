@@ -130,36 +130,41 @@ if __name__ == '__main__':
             cur_password = contents[-1]
             username = contents[-2]
 
-            driver = login(username, cur_password, setup())
-            # Check if the login successes.
-            try:
-                wait = WebDriverWait(driver, 5)
-                edit_profile_xpath = \
-                    '/html/body/div[3]/section[2]/div[1]/ul[2]/li[1]/div/a/h3'
-                element = \
-                    wait.until(EC.element_to_be_clickable((By.XPATH,
-                               edit_profile_xpath)))
-                change_password(driver, cur_password, new_password,
-                                edit_profile_xpath)
-                # Check if the password is successfully changed.
+            # Check if the password is same as the target one.
+            if cur_password == new_password:
+                print('{}: no need to change password.'.format(username))
+                append_to_file(username, new_password, success_file)
+            else:
+                driver = login(username, cur_password, setup())
+                # Check if the login successes.
                 try:
                     wait = WebDriverWait(driver, 5)
-                    confirmation_xpath = \
-                        '/html/body/div[3]/section[2]/div/h2'
+                    edit_profile_xpath = \
+                        '/html/body/div[3]/section[2]/div[1]/ul[2]/li[1]/div/a/h3'
                     element = \
                         wait.until(EC.element_to_be_clickable((By.XPATH,
-                               confirmation_xpath)))
-                    
-                    append_to_file(username, new_password, success_file)
-                    success_count += 1
-                    print('Successfully changed password for {} (#{}).'.format(username, success_count))
-                except TimeoutException:  # Usually due to bad new password.
+                                   edit_profile_xpath)))
+                    change_password(driver, cur_password, new_password,
+                                    edit_profile_xpath)
+                    # Check if the password is successfully changed.
+                    try:
+                        wait = WebDriverWait(driver, 5)
+                        confirmation_xpath = \
+                            '/html/body/div[3]/section[2]/div/h2'
+                        element = \
+                            wait.until(EC.element_to_be_clickable((By.XPATH,
+                                   confirmation_xpath)))
+                        
+                        append_to_file(username, new_password, success_file)
+                        success_count += 1
+                        print('Successfully changed password for {} (#{}).'.format(username, success_count))
+                    except TimeoutException:  # Usually due to bad new password.
+                        append_to_file(username, cur_password, failed_file)
+                        print('Failed to change password for {} (bad new password).'.format(username))
+                except TimeoutException:  # Usually due to wrong login password.
                     append_to_file(username, cur_password, failed_file)
-                    print('Failed to change password for {} (bad new password).'.format(username))
-            except TimeoutException:  # Usually due to wrong login password.
-                append_to_file(username, cur_password, failed_file)
-                print('Failed to change password for {} (bad login).'.format(username))
-            driver.close()
+                    print('Failed to change password for {} (bad login).'.format(username))
+                driver.close()
     f.close()
 
     print('Done...')
