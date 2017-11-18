@@ -66,6 +66,11 @@ def login(username, password, driver=None):
     return driver
 
 
+def check_password(password):
+
+    pass
+
+
 def change_password(driver, cur_password, new_password, edit_profile_xpath):
 
     # Click "Edit Profile"
@@ -133,7 +138,7 @@ if __name__ == '__main__':
             # Check if the password is same as the target one.
             if cur_password == new_password:
                 print('{}: no need to change password.'.format(username))
-                append_to_file(username, new_password, success_file)
+                append_to_file(username, cur_password, success_file)
             else:
                 driver = login(username, cur_password, setup())
                 # Check if the login successes.
@@ -161,9 +166,11 @@ if __name__ == '__main__':
                     except TimeoutException:  # Usually due to bad new password.
                         append_to_file(username, cur_password, failed_file)
                         print('Failed to change password for {} (bad new password).'.format(username))
+                        pass
                 except TimeoutException:  # Usually due to wrong login password.
                     append_to_file(username, cur_password, failed_file)
                     print('Failed to change password for {} (bad login).'.format(username))
+                    pass
                 driver.close()
     f.close()
 
