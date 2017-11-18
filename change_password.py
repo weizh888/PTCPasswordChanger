@@ -152,16 +152,16 @@ if __name__ == '__main__':
                     
                     append_to_file(username, new_password, success_file)
                     success_count += 1
-                    print 'Successfully changed password for {} (#{}).'.format(username, success_count)
+                    print('Successfully changed password for {} (#{}).'.format(username, success_count))
                 except TimeoutException:  # Usually due to bad new password.
                     append_to_file(username, cur_password, failed_file)
-                    print 'Failed to change password for {} (bad new password).'.format(username)
+                    print('Failed to change password for {} (bad new password).'.format(username))
             except TimeoutException:  # Usually due to wrong login password.
                 append_to_file(username, cur_password, failed_file)
-                print 'Failed to change password for {} (bad login).'.format(username)
+                print('Failed to change password for {} (bad login).'.format(username))
             driver.close()
     f.close()
 
-    print 'Done...'
+    print('Done...')
 
     driver.quit()
